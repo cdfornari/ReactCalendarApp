@@ -5,7 +5,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
-import { calendarAddNewEvent, calendarClearActiveEvent, calendarUpdateEvent } from '../../actions/calendar';
+import { calendarClearActiveEvent, calendarStartAddNewEvent, calendarStartUpdateEvent } from '../../actions/calendar';
 
 const customStyles = {
     content: {
@@ -77,16 +77,9 @@ export const CalendarModal = () => {
         }
         //TO DO: save in db
         if(activeEvent){
-            dispatch(calendarUpdateEvent(formValues))
+            dispatch(calendarStartUpdateEvent(formValues))
         }else{
-            dispatch(calendarAddNewEvent({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id: '123',
-                    name: 'Carlos'
-                }
-            }))
+            dispatch(calendarStartAddNewEvent(formValues))
         }
         setTitleValid(true);
         closeModal();

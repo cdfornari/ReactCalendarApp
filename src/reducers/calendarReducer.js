@@ -6,6 +6,11 @@ const initialState = {
 }
 export const calendarReducer = (state = initialState,action) => { 
     switch (action.type) {
+        case types.calendarEventsLoad:
+            return {
+                ...state,
+                events: [...action.payload]
+            }
         case types.calendarAddNewEvent:
             return {
                 ...state,
@@ -39,6 +44,8 @@ export const calendarReducer = (state = initialState,action) => {
                 ),
                 activeEvent: null
             }
+        case types.calendarClearEvents:
+            return {...initialState}
         default:
             return state;
     }
