@@ -12,7 +12,7 @@ export const AppRouter = () => {
     const {checking,uid} = useSelector(state => state.auth);
     useEffect(() => {
         dispatch(startChecking())
-    }, [])
+    }, [dispatch])
     if(checking) return <h5>Cargando</h5>
     return (
         <BrowserRouter>
@@ -29,6 +29,7 @@ export const AppRouter = () => {
                         </PrivateRoute>
                     }
                 />
+                <Route path="*" element={<Navigate to={!!uid ? '/' : 'login'}/>} />
             </Routes>
         </BrowserRouter>
     )

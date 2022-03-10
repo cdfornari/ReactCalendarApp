@@ -48,6 +48,7 @@ export const startChecking = () => {
                 name: body.name
             }));
         }else{
+            localStorage.removeItem('token');
             Swal.fire('Error',body.msg,'error')
             dispatch(checkingFinish);
         }
